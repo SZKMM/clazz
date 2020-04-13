@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link th:href="@{/admin/static/css/index_g.css}">
+    <script th:src="@{/admin/static/js/jquery-2.0.0.min.js}"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        tr {
+            font-size: 12px;
+        }
+
+        tr:nth-of-type(1) {
+            height: 40px;
+        }
+
+        td {
+            height: 16px;
+            word-break: keep-all;
+            white-space: nowrap;
+        }
+
+        p {
+            padding: 5px 10px;
+            box-sizing: border-box;
+        }
+
+        .box {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -35%) scale(0.3);
+            /* width: 100%; */
+            margin: 0 auto;
+            text-align: center;
+            color: #000;
+        }
+
+        /* .father:nth-of-type(2) {
+            transform: translate(-50%, -100%) scale(0.3);
+        } */
+
+        tr td:first-child {
+            background-color: #ccc;
+            /* color: red; */
+        }
+
+        tr td:nth-of-type(2),
+        .first {
+            background-color: #192C2C;
+            color: #fff;
+        }
+
+        tr td:nth-of-type(3),
+        .second {
+            background-color: #297E3B
+        }
+
+        tr td:nth-of-type(4),
+        .fourth {
+            background-color: #319F48
+        }
+
+        tr td:nth-of-type(5),
+        .fifth {
+            background-color: #2E3A3A
+        }
+
+        tr td:nth-of-type(6),
+        .sixth {
+            background-color: #E8E8E9
+        }
+
+        tr td:nth-of-type(7) {
+            background-color: #192C2C;
+        }
+
+        tr td:nth-of-type(8) {
+            background-color: #277E39;
+        }
+
+        td {
+            font-size: 12px;
+            border-radius: 5px;
+            border: none
+        }
+
+        tr:nth-of-type(3),
+        tr:nth-of-type(4) {
+            border-bottom: 2px solid #32FEFF;
+        }
+
+        tr:nth-of-type(7) {
+            border-bottom: 2px solid #33E0FF;
+        }
+
+        .first-img {
+            position: relative;
+            /* left: 50%; */
+            /* transform: translate(-50%, -100%) scale(0.3); */
+            width: 100%;
+            /* margin: 0 auto; */
+        }
+
+        .first-img,
+        .second-img {
+            display: block;
+            width: 923px;
+        }
+
+        .second-img {
+            position: relative;
+        }
+
+        i {
+            font-style: normal;
+        }
+
+        .gx {
+            width: 100%;
+            text-align: center;
+        }
+
+        body {
+            background: url('/admin/static/images/xy.jpg');
+            background-attachment: fixed
+        }
+
+        .father {
+            height: 320px;
+        }
+    </style>
+</head>
+
+<body id="content-pane">
+
+</body>
+<script>
+
+    $(function () {
+        $.ajax({
+            url: 'http://localhost/admin/cources/table/list/front/end/sideways/all',
+            type: 'GET',
+            dataType: 'JSONP',
+            JSONP: 'callback',
+            success: function (res) {
+                var arr = [];
+                var allHtml = "";
+                $.each(res.data,function (index,item) {
+                    var html = '<div>';
+                    html += '<div class="gx">';
+                    html += '<p style="font-size:2rem;" >'+item[0][0].storeFront.name+'</p>';
+                    html += '</div>';
+                    html += '<div class="father" style="position: relative;">';
+                    html += '<div class="box">';
+                    html += '<img class="first-img" src="/admin/static/images/kb-header.jpg" alt="">';
+                    html += '<table border="0" cellspacing="3" style="width: 100%;" class="test">';
+                    html += '<tr>';
+                    html += '<th style="letter-spacing: 7px; background-color: #005035; color: #fff;">时间</th>';
+                    html += '<th style="background-color: #192C2C; color: #fff;">星期一</th>';
+                    html += '<th style="background-color: #287E3A; color: #fff;">星期二</th>';
+                    html += '<th style="background-color: #319F48; color: #fff;">星期三</th>';
+                    html += '<th style="background-color: #2E3A3A; color: #fff;">星期四</th>';
+                    html += '<th style="background-color: #E8E8E9; color: #525D5C;">星期五</th>';
+                    html += '<th style="background-color: #2E3A3A; color: #fff;">星期六</th>';
+                    html += '<th style="background-color: #277E39; color: #fff;">星期天</th>';
+                    html += '</tr>';
+                    var count = "";
+                    $.each(item,function (indexTwo,itemTwo) {
+
+                        html += '<tr class="all-tr-'+indexTwo+'">';
+                        if (indexTwo == 0){
+                            html += '<td rowspan="2">';
+                            html += '12:30-13:30';
+                            html += '</td>';
+                        }
+                        if (indexTwo == 2){
+                            html += '<td rowspan="1">';
+                            html += '13:45-14:45';
+                            html += '</td>';
+                        }
+                        if (indexTwo == 3){
+                            html += '<td rowspan="3">';
+                            html += '18:30-19:30';
+                            html += '</td>';
+                        }
+                        if (indexTwo == 6){
+                            html += '<td rowspan="3">';
+                            html += '19:45-20:45';
+                            html += '</td>';
+                        }
+                        $.each(itemTwo,function (indexThree,itemThree) {
+                            if (typeof(itemThree.name) != "undefined" && itemThree.name != "" && itemThree.name != null){
+                                if (isDateBetween(itemThree.start_time.replace(":","/").replace(":","/"),"12/30/00","13/30/00")){
+                                    console.log("12:30")
+                                    html += '<td>';
+                                    html += '<p>'+itemThree.name+'<i>  '+itemThree.star_class+'</i></p>';
+                                    html += '<span>'+itemThree.type+'</span>';
+                                    html += '<p>'+itemThree.effect+'</p>';
+                                    //html += '<p>'+itemThree.start_time+'</p>';
+                                    html += '</td>';
+                                    arr.push(itemThree.week.describe)
+                                }
+
+                            }
+
+                        })
+                        $.each(itemTwo,function (indexThree,itemThree) {
+                            if (typeof(itemThree.name) != "undefined" && itemThree.name != "" && itemThree.name != null){
+                                if (isDateBetween(itemThree.start_time.replace(":","/").replace(":","/"),"13/45/00","14/45/00")){
+                                    console.log("13:45")
+                                    html += '<td>';
+                                    html += '<p>'+itemThree.name+'<i>  '+itemThree.star_class+'</i></p>';
+                                    html += '<span>'+itemThree.type+'</span>';
+                                    html += '<p>'+itemThree.effect+'</p>';
+                                    //html += '<p>'+itemThree.start_time+'</p>';
+                                    html += '</td>';
+                                    //arr.push(itemThree.week.describe)
+                                }
+                            }
+                        })
+                        html += '</tr>';
+
+                    })
+                    html += '</table>';
+                    html += '<img class="second-img" src="/admin/static/images/foot.jpg" alt="">';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</div>';
+                    // allHtml += html;
+                    $("#content-pane").append(html);
+                })
+                console.log(arr)
+                // var nary=arr.sort();
+                //
+                // for(var i=0;i<arr.length;i++){
+                //
+                //     if (nary[i]==nary[i+1]){
+                //
+                //         nary[i];
+                //
+                //     }
+                //
+                // }
+                var kisf = newArr(arr);
+                //console.log($('tr')[0].children[1].innerHTML);
+
+                var a = $('tr')[0].children[1]
+                //合并周一12点半点的代码
+                var bbbdd = $('tr')[0].children[7].innerHTML;
+                console.log(bbbdd)
+                a.parentNode.nextElementSibling.children[1].rowSpan = '2'
+                console.log(kisf[4])
+                for(var k=0;k<kisf.length; k++){
+                    for( var i=1; i<=7 ; i++){
+                        var aaa = kisf[k];
+
+                        var bbb = $('tr')[0].children[i].innerHTML;
+                        if(aaa==bbb){
+                            a.parentNode.nextElementSibling.children[i].rowSpan = '2'
+                        }
+
+                    }
+                }
+
+                //合并周二
+                // a.parentNode.nextElementSibling.children[2].rowSpan = '2'
+                // //合并周三
+                // a.parentNode.nextElementSibling.children[3].rowSpan = '2'
+                // //合并周四
+                // a.parentNode.nextElementSibling.children[4].rowSpan = '2'
+                // //合并周五
+                // a.parentNode.nextElementSibling.children[3].rowSpan = '2'
+                // //合并周六
+                // a.parentNode.nextElementSibling.children[3].rowSpan = '2'
+                // //合并周天
+                // a.parentNode.nextElementSibling.children[3].rowSpan = '2'
+
+
+                // for (var i = 1; i < 9; i++) {
+                //     $('<td></td>').insertBefore($('table tr')[i].firstElementChild)
+                //
+                // }
+                // console.log($('<td></td>'))
+                // console.log($('.all-tr-0'));
+                // $('.all-tr-0')[0].firstElementChild.innerHTML = '12:00-13:30';
+                // $('table tr')[3].firstElementChild.innerHTML = '13:45-14:45';
+                // $('table tr')[4].firstElementChild.innerHTML = '18:30-19:30';
+                // $('table tr')[7].firstElementChild.innerHTML = '19:45-20:45';
+                //
+                // fun($('.all-tr-0')[0].firstElementChild, 2, $('tr')[2].firstElementChild, 2)
+                // $('table tr')[4].firstElementChild.rowSpan = 3;
+                // $('table tr')[5].firstElementChild.remove()
+                // $('table tr')[6].firstElementChild.remove()
+                // $('table tr')[7].firstElementChild.rowSpan = 3;
+                // $('table tr')[8].firstElementChild.remove()
+                // // 合并单元格
+                // function fun(that, x, n, m) {
+                //     that.rowSpan = x;
+                //     n.remove()
+                //     $('table tr')[m].firstElementChild.classList.add('first')
+                // }
+                //点击放大
+                var flag = true
+                var phoneWidth = window.screen.width
+                function morewidth(that, num) {
+                    if (flag == true) {
+                        $(that).css({ "transform": " scale(1)", "top": 0, "left": 0 });
+                        $('.father')[num].style.height = 802 + 'px'
+                        flag = false
+                    }
+                    else {
+                        $(that).css({ "transform": " translate(-50%, -35%) scale(0.3)", "left": "50%" })
+                        $('.father')[num].style.height = 241 + 'px'
+                        flag = true
+                    }
+                }
+                var imgs = document.querySelectorAll('.box');
+                var fathers = document.querySelectorAll('.father');
+                imgs.forEach((item, i) => {
+                    item.setAttribute('index', i)
+                    item.onclick = function () {
+                        var num = Number(this.getAttribute('index'))
+                        morewidth(this, num)
+                    }
+                })
+            }
+        })
+
+    })
+
+
+
+    function newArr(arr){
+        for(var i=0;i<arr.length;i++){
+            for(var j=i+1;j<arr.length;j++)
+                if(arr[i]==arr[j]){
+                    //如果第一个等于第二个，splice方法删除第二个
+                    arr.splice(j,1);
+                    arr.splice(i,1);
+                    j--;
+                }
+        }
+    return arr;
+    }
+
+
+
+    function getCommonObj(arr,key,val){//arr是数组，key是需要比对的属性名，val是要比对的属性值
+        var valArr = []//用来存找到的对象
+        for(var i=0; i< arr.length; i++){
+            if(arr[i][key] == val){
+                valArr.push(arr[i])//存值
+            }
+        }
+        if(valArr.length>=2){
+            return valArr
+        }
+    }
+    /**
+     * 判断日期是否在区间内，在区间内返回true，否返回false
+     * @param dateString 日期字符串
+     * @param startDateString 区间开始日期字符串
+     * @param endDateString 区间结束日期字符串
+     * @returns {Number}
+     */
+    function isDateBetween(dateString, startDateString, endDateString){
+
+        var flag = false;
+        var startFlag = (dateCompare(dateString, startDateString) < 1);
+        var endFlag = (dateCompare(dateString, endDateString) > -1);
+        if(startFlag && endFlag){
+            flag = true;
+        }
+        return flag;
+    };
+
+    /**
+     * 判断日期区间[startDateCompareString,endDateCompareString]是否完全在别的日期区间内[startDateString,endDateString]
+     * 即[startDateString,endDateString]区间是否完全包含了[startDateCompareString,endDateCompareString]区间
+     * 在区间内返回true，否返回false
+     * @param startDateString 新选择的开始日期，如输入框的开始日期
+     * @param endDateString 新选择的结束日期，如输入框的结束日期
+     * @param startDateCompareString 比较的开始日期
+     * @param endDateCompareString 比较的结束日期
+     * @returns {Boolean}
+     */
+    function isDatesBetween(startDateString, endDateString,
+                            startDateCompareString, endDateCompareString){
+
+        var flag = false;
+        var startFlag = (dateCompare(startDateCompareString, startDateString) < 1);
+        var endFlag = (dateCompare(endDateCompareString, endDateString) > -1);
+        if(startFlag && endFlag){
+            flag = true;
+        }
+        return flag;
+    };
+    /**
+     * 日期解析，字符串转日期
+     * @param dateString 可以为2017-02-16，2017/02/16，2017.02.16
+     * @returns {Date} 返回对应的日期对象
+     */
+    function dateParse(dateString){
+        var SEPARATOR_BAR = "-";
+        var SEPARATOR_SLASH = "/";
+        var SEPARATOR_DOT = ".";
+        var SEPARATOR_H = ":";
+        var dateArray;
+        if(dateString.indexOf(SEPARATOR_BAR) > -1){
+            dateArray = dateString.split(SEPARATOR_BAR);
+        }else if(dateString.indexOf(SEPARATOR_SLASH) > -1){
+            dateArray = dateString.split(SEPARATOR_SLASH);
+        }else if(dateString.indexOf(SEPARATOR_DOT > -1)) {
+            dateArray = dateString.split(SEPARATOR_DOT);
+        }else{
+            dateArray = dateString.split(SEPARATOR_H);
+        }
+        return new Date(dateArray[0], dateArray[1]-1, dateArray[2]);
+    };
+    /**
+     * 日期比较大小
+     * compareDateString大于dateString，返回1；
+     * 等于返回0；
+     * compareDateString小于dateString，返回-1
+     * @param dateString 日期
+     * @param compareDateString 比较的日期
+     */
+    function dateCompare(dateString, compareDateString){
+
+        var dateTime = dateParse(dateString).getTime();
+        var compareDateTime = dateParse(compareDateString).getTime();
+        if(compareDateTime > dateTime){
+            return 1;
+        }else if(compareDateTime == dateTime){
+            return 0;
+        }else{
+            return -1;
+        }
+    };
+
+</script>
+
+</html>

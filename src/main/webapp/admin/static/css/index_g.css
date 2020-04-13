@@ -1,0 +1,81 @@
+* { 
+    margin: 0;
+    padding: 0;
+}
+/* body {
+    background: url('../images/xy.jpg');
+    background-attachment: fixed
+}
+table {
+    position: relative;
+    top: -403px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.2, 0.2);
+}
+tr td:nth-of-type(2),
+.first {
+    background-color: #192C2C;
+    color: #fff;
+}
+tr td:nth-of-type(3),
+.second {
+    background-color: #297E3B
+}
+tr td:nth-of-type(4),
+.fourth {
+    background-color: #319F48
+}
+tr td:nth-of-type(5),
+.fifth {
+    background-color: #2E3A3A
+}
+tr td:nth-of-type(6),
+.sixth {
+    background-color: #E8E8E9
+}
+tr td:nth-of-type(7) {
+    background-color: #192C2C;
+}
+tr td:nth-of-type(8) {
+    background-color: #277E39;
+}
+td {
+    font-size: 12px;
+    border-radius: 10px;
+    border: none
+}
+tr:nth-of-type(3),
+tr:nth-of-type(4) {
+    border-bottom: 2px solid #32FEFF;
+}
+tr:nth-of-type(7) {
+    border-bottom: 2px solid #33E0FF;
+}
+th {
+    border: none;
+    letter-spacing: 9px;
+}
+i {
+    font-size: 20px;
+    font-style: normal;
+}
+.title {
+    text-align: center;
+}
+img {
+    position: relative;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.clearfix:after {
+    /*伪元素是行内元素 正常浏览器清除浮动方法*/
+    /* content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.table{ 
+    height: 197px;
+} */ 

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .xy-kb {
+      display: flex;
+      justify-content: center;
+    }
+
+    ul {
+      list-style: none;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    ul li {
+      word-break: keep-all;
+      white-space: nowrap;
+      padding: 20px 20px;
+      border-radius: 5px;
+    }
+    ul:nth-of-type(2) li { 
+      background-color: skyblue;
+      margin: 10px 0;
+    }
+    ul:nth-of-type(7) li {
+      background-color: skyblue;
+      margin: 10px 0;
+    }
+    ul:nth-of-type(8) li {
+      background-color: skyblue;
+      margin: 10px 0;
+    }
+    ul:nth-of-type(1) li {
+      background-color: skyblue;
+      margin: 10px 0;
+    }
+    ul:nth-of-type(3) li { 
+      background-color: pink;
+      margin: 10px 0;
+    }
+    ul:nth-of-type(4) li {
+      background-color: pink;
+      margin: 10px 0;
+    }
+    ul:nth-of-type(5) li {
+      background-color: pink;
+      margin: 10px 0;
+    }
+    ul:nth-of-type(6) li {
+      background-color: pink;
+      margin: 10px 0;
+    }
+   /* ul:nth-of-type(2) {
+      background-color: green;
+    }
+
+    ul:nth-of-type(3) {
+      background-color: skyblue;
+    }
+
+    ul:nth-of-type(4) {
+      background-color: orange;
+    }
+
+    ul:nth-of-type(5) {
+      background-color: palegreen;
+    }
+
+    ul:nth-of-type(6) {
+      background-color: tan;
+    }
+
+    ul:nth-of-type(7) {
+      background-color: rgb(140, 210, 204);
+    }
+
+    ul:nth-of-type(8) {
+      background-color: rgb(240, 192, 255);
+    } */
+  </style>
+</head>
+
+<body>
+  <div class="xy-kb" th:each="store,state:${list}">
+    <p th:text="${store.name}"></p>
+    <ul>
+      <li>时间</li>
+      <li class="time-morning">12:30-13:30</li>
+      <li>
+      </li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul th:each="week,stateTwo:${store.weeks}">
+      <li th:text="${week.describe}">星期一</li>
+      <li th:each="table,stateThree:${week.tableCources}">
+        <p th:text="${table.name != null ? table.name :'无' } +' '+ ${table.star_class}">钢管舞</p>
+        <span th:text="${table.type}">成品舞</span>
+        <p th:text="${table.effect}">锻炼腹部，塑形紧身</p>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>
